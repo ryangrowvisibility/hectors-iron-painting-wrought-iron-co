@@ -24,11 +24,11 @@ const mono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Hector's Iron Painting & Wrought Iron Co — Bakersfield, CA",
   description:
-    "Electrostatic painting for wrought iron, fences, and ornamental metals — on your property. Twenty years in Bakersfield. CSLB Lic. #1009092.",
+    "Twenty years of on-site electrostatic painting for wrought iron gates, fences, and ornamental metals across Bakersfield. CSLB Lic. #1009092 · 4.8★ across 37 reviews.",
   openGraph: {
-    title: "Hector's Iron Painting — Bakersfield",
+    title: "Hector's Iron Painting — Bakersfield Wrought Iron Specialists",
     description:
-      "Specialty painter. Iron, fences, gates. Painted on-site since 2006.",
+      "On-site electrostatic painting since 2006. The gate stays on its hinges.",
     type: "website",
   },
 };
