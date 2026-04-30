@@ -1,102 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --paper: oklch(0.972 0.012 85);
-  --bone: oklch(0.945 0.018 80);
-  --vellum: oklch(0.91 0.022 78);
-  --ink: oklch(0.18 0.012 60);
-  --iron: oklch(0.245 0.014 250);
-  --brass: oklch(0.62 0.108 75);
-  --copper: oklch(0.55 0.13 38);
-  --moss: oklch(0.42 0.07 145);
-  --rust: oklch(0.45 0.14 35);
+  /* Editorial Luxury palette — warm cream, espresso, bronze, patina */
+  --paper: oklch(0.972 0.014 78);
+  --linen: oklch(0.93 0.020 76);
+  --sand: oklch(0.88 0.024 74);
+  --espresso: oklch(0.18 0.014 38);
+  --iron: oklch(0.30 0.012 240);
+  --bronze: oklch(0.55 0.110 55);
+  --patina: oklch(0.62 0.045 165);
+  --hairline: oklch(0.18 0.014 38 / 0.10);
+  --hairline-strong: oklch(0.18 0.014 38 / 0.18);
 }
 
-html {
+html, body {
   background: var(--paper) !important;
-  color: var(--ink);
+  color: var(--espresso);
 }
 
 body {
-  background: var(--paper) !important;
-  color: var(--ink);
   font-family: var(--font-body), Georgia, serif;
-  font-feature-settings: "ss01", "kern";
+  font-feature-settings: "ss01", "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 @theme inline {
   --color-paper: var(--paper);
-  --color-bone: var(--bone);
-  --color-vellum: var(--vellum);
-  --color-ink: var(--ink);
+  --color-linen: var(--linen);
+  --color-sand: var(--sand);
+  --color-espresso: var(--espresso);
   --color-iron: var(--iron);
-  --color-brass: var(--brass);
-  --color-copper: var(--copper);
-  --color-moss: var(--moss);
-  --color-rust: var(--rust);
+  --color-bronze: var(--bronze);
+  --color-patina: var(--patina);
+  --color-hairline: var(--hairline);
   --font-display: var(--font-display);
-  --font-script: var(--font-script);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 }
 
-::selection {
-  background: var(--copper);
-  color: var(--paper);
+::selection { background: var(--bronze); color: var(--paper); }
+
+/* film grain overlay — fixed, pointer-events-none per high-end-visual-design constraint */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-@keyframes rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Custom cubic-bezier easing per high-end-visual-design — fluid spring */
+.fluid-1 { transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1); }
+.fluid-2 { transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
 
-@keyframes spark {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 1; }
+/* Scroll-reveal: heavy fade-up + blur per skill spec */
+@keyframes lift {
+  0%   { opacity: 0; transform: translateY(36px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
+.lift { animation: lift 900ms cubic-bezier(0.32, 0.72, 0, 1) both; }
+.lift-1 { animation-delay: 80ms; }
+.lift-2 { animation-delay: 180ms; }
+.lift-3 { animation-delay: 280ms; }
+.lift-4 { animation-delay: 380ms; }
 
-.rise { animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-.rise-1 { animation-delay: 80ms; }
-.rise-2 { animation-delay: 160ms; }
-.rise-3 { animation-delay: 240ms; }
-.rise-4 { animation-delay: 320ms; }
-.rise-5 { animation-delay: 400ms; }
+/* Hairline rule — variable thickness depending on bg */
+.rule-light { background: var(--hairline); height: 1px; width: 100%; }
+.rule-strong { background: var(--hairline-strong); height: 1px; width: 100%; }
 
-.spark { animation: spark 2.4s ease-in-out infinite; }
+/* Tabular nums for stat lines */
+.tnum { font-variant-numeric: tabular-nums; }
 
-.deckle {
-  --deckle: 6px;
-  position: relative;
-}
-.deckle::after {
-  content: "";
-  position: absolute; inset: -2px;
-  background: var(--ink);
-  z-index: -1;
-  clip-path: polygon(
-    0% 4%, 2% 0%, 6% 2%, 12% 0%, 18% 3%, 24% 0%, 31% 2%, 38% 0%, 45% 3%, 52% 0%,
-    59% 2%, 66% 0%, 73% 3%, 80% 0%, 87% 2%, 94% 0%, 100% 4%,
-    100% 96%, 98% 100%, 94% 98%, 88% 100%, 82% 97%, 76% 100%, 69% 98%, 62% 100%,
-    55% 97%, 48% 100%, 41% 98%, 34% 100%, 27% 97%, 20% 100%, 13% 98%, 6% 100%, 0% 96%
-  );
-}
-
-.iron-rule {
-  background:
-    linear-gradient(90deg,
-      transparent 0,
-      var(--ink) 8%, var(--ink) 92%,
-      transparent 100%);
-  height: 1px;
-}
-
-.spec-grid {
-  background-image:
-    linear-gradient(var(--vellum) 1px, transparent 1px),
-    linear-gradient(90deg, var(--vellum) 1px, transparent 1px);
-  background-size: 32px 32px;
-  background-position: -1px -1px;
-}
+/* Magnetic press — buttons scale slightly on press */
+button, a { transition-property: transform, color, background-color, border-color, opacity; transition-duration: 360ms; transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1); }
+button:active, a:active { transform: scale(0.98); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
