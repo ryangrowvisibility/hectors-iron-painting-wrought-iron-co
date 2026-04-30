@@ -1,82 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  /* Editorial Luxury palette — warm cream, espresso, bronze, patina */
-  --paper: oklch(0.972 0.014 78);
-  --linen: oklch(0.93 0.020 76);
-  --sand: oklch(0.88 0.024 74);
-  --espresso: oklch(0.18 0.014 38);
-  --iron: oklch(0.30 0.012 240);
-  --bronze: oklch(0.55 0.110 55);
-  --patina: oklch(0.62 0.045 165);
-  --hairline: oklch(0.18 0.014 38 / 0.10);
-  --hairline-strong: oklch(0.18 0.014 38 / 0.18);
+  /* Soft Structuralism — silver-grey + charcoal + steel accent */
+  --paper: oklch(0.985 0.002 240);
+  --pearl: oklch(0.96 0.004 240);
+  --silver: oklch(0.90 0.006 240);
+  --steel-200: oklch(0.78 0.010 240);
+  --steel-500: oklch(0.50 0.015 240);
+  --charcoal: oklch(0.22 0.012 245);
+  --vantablack: oklch(0.10 0.014 245);
+  --signal: oklch(0.52 0.16 245);   /* steel-blue accent — used sparingly */
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html, body {
   background: var(--paper) !important;
-  color: var(--espresso);
+  color: var(--charcoal);
 }
 
 body {
-  font-family: var(--font-body), Georgia, serif;
-  font-feature-settings: "ss01", "kern", "liga";
+  font-family: var(--font-body), Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 @theme inline {
   --color-paper: var(--paper);
-  --color-linen: var(--linen);
-  --color-sand: var(--sand);
-  --color-espresso: var(--espresso);
-  --color-iron: var(--iron);
-  --color-bronze: var(--bronze);
-  --color-patina: var(--patina);
-  --color-hairline: var(--hairline);
+  --color-pearl: var(--pearl);
+  --color-silver: var(--silver);
+  --color-steel-200: var(--steel-200);
+  --color-steel-500: var(--steel-500);
+  --color-charcoal: var(--charcoal);
+  --color-vantablack: var(--vantablack);
+  --color-signal: var(--signal);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 }
 
-::selection { background: var(--bronze); color: var(--paper); }
+::selection { background: var(--signal); color: var(--paper); }
 
-/* film grain overlay — fixed, pointer-events-none per high-end-visual-design constraint */
-.grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+/* Soft diffused ambient shadows — Soft Structuralism signature */
+.lift-shadow {
+  box-shadow:
+    0 1px 1px oklch(0.22 0.012 245 / 0.04),
+    0 8px 24px -12px oklch(0.22 0.012 245 / 0.10),
+    0 32px 60px -32px oklch(0.22 0.012 245 / 0.08);
 }
 
-/* Custom cubic-bezier easing per high-end-visual-design — fluid spring */
-.fluid-1 { transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1); }
-.fluid-2 { transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
-
-/* Scroll-reveal: heavy fade-up + blur per skill spec */
-@keyframes lift {
-  0%   { opacity: 0; transform: translateY(36px); filter: blur(8px); }
-  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+.deep-shadow {
+  box-shadow:
+    0 1px 1px oklch(0.22 0.012 245 / 0.06),
+    0 12px 36px -16px oklch(0.22 0.012 245 / 0.16),
+    0 64px 100px -48px oklch(0.22 0.012 245 / 0.12);
 }
-.lift { animation: lift 900ms cubic-bezier(0.32, 0.72, 0, 1) both; }
-.lift-1 { animation-delay: 80ms; }
-.lift-2 { animation-delay: 180ms; }
-.lift-3 { animation-delay: 280ms; }
-.lift-4 { animation-delay: 380ms; }
 
-/* Hairline rule — variable thickness depending on bg */
-.rule-light { background: var(--hairline); height: 1px; width: 100%; }
-.rule-strong { background: var(--hairline-strong); height: 1px; width: 100%; }
+button, a {
+  transition: transform 240ms var(--ease-fluid), color 240ms ease, background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+button:active, a:active { transform: scale(0.98); }
 
-/* Tabular nums for stat lines */
+@keyframes settle {
+  from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.settle { animation: settle 800ms var(--ease-fluid) both; }
+.settle-1 { animation-delay: 80ms; }
+.settle-2 { animation-delay: 180ms; }
+.settle-3 { animation-delay: 280ms; }
+.settle-4 { animation-delay: 380ms; }
+
 .tnum { font-variant-numeric: tabular-nums; }
 
-/* Magnetic press — buttons scale slightly on press */
-button, a { transition-property: transform, color, background-color, border-color, opacity; transition-duration: 360ms; transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1); }
-button:active, a:active { transform: scale(0.98); }
+/* Tracked uppercase — set globally to avoid per-element repetition */
+.eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.50 0.015 240); }
+
+/* Anton's natural letter-spacing is too tight at huge sizes — open it up */
+.anton-display { letter-spacing: -0.012em; line-height: 0.85; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

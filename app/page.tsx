@@ -7,79 +7,59 @@ export const metadata: Metadata = {
 const PHONE = "(661) 667-3276";
 const PHONE_HREF = "tel:+16616673276";
 const ADDRESS = "4101 De Ette Ave, Bakersfield, CA 93313";
-const HOURS = "Monday — Saturday · 9 AM to 5 PM";
+const HOURS = "Mon–Sat · 9 AM – 5 PM";
 const FACEBOOK = "https://www.facebook.com/p/Hectors-Iron-painting-100058155382867/";
 const MAPS_EMBED =
   "https://maps.google.com/maps?q=4101%20De%20Ette%20Ave%2C%20Bakersfield%2C%20CA%2093313&output=embed";
 
-const processSteps = [
+const services = [
   {
-    code: "01",
-    head: "Ground",
-    body: "A clamp grounds the iron and runs a low charge through every picket, scroll, and finial.",
+    title: "Wrought Iron · On-Site Electrostatic",
+    body: "Gates, fences, railings, ornamental metals — painted where they stand. Most painters don't own this equipment.",
+    tags: ["Driveway gates", "Estate fencing", "Pool fencing", "Stair rails", "Ornamental"],
   },
   {
-    code: "02",
-    head: "Atomize",
-    body: "Paint exits the gun as charged particles. They are drawn to the metal — not the bushes, not your driveway.",
+    title: "Ornamental & Decorative Metal",
+    body: "Custom iron work, security bars, scrolls, light posts. We carry the Ornamental Metals CSLB classification — most painters do not.",
+    tags: ["Security bars", "Light posts", "Awnings", "Custom work"],
   },
   {
-    code: "03",
-    head: "Cure",
-    body: "The film flows out smooth, dries hard. Closer to powder coat than brush-and-roll.",
+    title: "Interior House Painting",
+    body: "Whole-house repaints with the same patience we give a railing. Even sheen, true color, cut lines that hold.",
+    tags: ["Walls", "Ceilings", "Trim", "Cabinets", "Doors"],
   },
   {
-    code: "04",
-    head: "Walk away",
-    body: "The gate stays on its hinges. The dog stays in the yard. We mask, paint, and clean up in a single visit.",
+    title: "Exterior House Painting",
+    body: "Stucco, wood, and metal exteriors prepped for Bakersfield sun. Twenty years has taught us which products fade and which hold.",
+    tags: ["Stucco", "Siding", "Soffits", "Doors", "Exterior trim"],
   },
 ];
 
-const services = [
-  {
-    code: "00 — flagship",
-    title: "Wrought Iron, Painted On-Site",
-    body: "Gates, fences, railings, and ornamental metals refinished where they stand using our electrostatic unit. Most Bakersfield painters do not own this equipment.",
-    spec: ["Gates · driveway, walk-thru", "Fence runs · estate, residential", "Pool fencing", "Stair rails · balcony rails"],
-  },
-  {
-    code: "01 — metals",
-    title: "Ornamental & Decorative Metal",
-    body: "Custom iron work, security bars, ornamental scrolls, light posts. We are dual-licensed for ornamental metal classification, which most painters are not.",
-    spec: ["Window security bars", "Light posts · awnings", "Iron furniture", "Custom ornamental"],
-  },
-  {
-    code: "02 — interior",
-    title: "Interior House Painting",
-    body: "Whole-house interior repaints with the same patience we give a railing. Cut lines, even sheen, true color across walls, ceilings, trim, and doors.",
-    spec: ["Walls · ceilings", "Trim · base · crown", "Doors · cabinetry", "Texture matching"],
-  },
-  {
-    code: "03 — exterior",
-    title: "Exterior House Painting",
-    body: "Stucco, wood, and metal exteriors prepped for Bakersfield sun. Two decades on the same roads has taught us which products hold and which fade.",
-    spec: ["Stucco · siding", "Eaves · soffits", "Doors · trim", "Iron-house combo jobs"],
-  },
+const stats = [
+  { num: "20", label: "Years on the iron", note: "Established 2006" },
+  { num: "37", label: "Verified reviews", note: "4.8 stars on Google" },
+  { num: "2", label: "CSLB classes", note: "Painting · Ornamental Metals" },
+  { num: "1", label: "Visit", note: "Mask, prep, paint, walk away" },
 ];
 
 const reviews = [
   {
     body: "Best wrought iron finish I have seen in Kern County. The electrostatic process really does make a difference.",
-    context: "Estate fencing, Bakersfield",
+    context: "Estate fencing · Bakersfield",
   },
   {
     body: "The driveway gate looked brand new when they finished — and they painted it right where it hangs.",
-    context: "Wrought iron gate, residential",
+    context: "Wrought iron gate · residential",
   },
   {
     body: "Hector and his crew have been painting our house and fences for years. They show up when they say they will.",
-    context: "Repeat customer, residential",
+    context: "Repeat customer · residential",
   },
 ];
 
-const ArrowOut = ({ className = "" }: { className?: string }) => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-    <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+const ArrowRight = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -126,250 +106,214 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* FLOATING ISLAND NAV — detached glass pill, top-center */}
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-40 lift">
-        <div className="bg-paper/70 backdrop-blur-xl ring-1 ring-espresso/10 rounded-full pl-5 pr-1.5 py-1.5 flex items-center gap-5 shadow-[0_1px_0_oklch(0.18_0.014_38_/_0.04),0_24px_60px_-30px_oklch(0.18_0.014_38_/_0.18)]">
-          <a href="/" className="flex items-center gap-2.5">
-            <span className="block w-2 h-2 rounded-full bg-bronze" />
-            <span className="font-display text-[15px] tracking-[-0.01em] text-espresso">
-              Hector&apos;s Iron Painting
+      {/* TOP BAR — flat structural strip, not a glass pill */}
+      <header className="border-b border-charcoal/8 bg-paper sticky top-0 z-40 backdrop-blur-sm">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+          <a href="/" className="flex items-baseline gap-3">
+            <span className="font-display text-[22px] tracking-[-0.01em] text-charcoal">
+              HECTOR&apos;S IRON
             </span>
+            <span className="eyebrow hidden sm:inline">Bakersfield · Est. 2006</span>
           </a>
-          <span className="hidden md:block h-4 w-px bg-espresso/15" />
-          <nav className="hidden md:flex items-center gap-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-espresso/70">
-            <a href="#trade" className="hover:text-bronze transition-colors fluid-1">Trade</a>
-            <a href="#work" className="hover:text-bronze transition-colors fluid-1">Work</a>
-            <a href="#voice" className="hover:text-bronze transition-colors fluid-1">Voice</a>
-            <a href="#contact" className="hover:text-bronze transition-colors fluid-1">Contact</a>
+          <nav className="hidden md:flex items-center gap-7 text-[12px] text-charcoal/70">
+            <a href="#trade" className="hover:text-signal">The trade</a>
+            <a href="#work" className="hover:text-signal">Work</a>
+            <a href="#voice" className="hover:text-signal">Voice</a>
+            <a href="#contact" className="hover:text-signal">Contact</a>
           </nav>
           <a
             href={PHONE_HREF}
-            className="group bg-espresso text-paper rounded-full pl-4 pr-1.5 py-1.5 flex items-center gap-2.5 font-mono text-[10.5px] uppercase tracking-[0.16em] hover:bg-bronze fluid-1"
+            className="inline-flex items-center gap-2 text-[13px] tnum text-charcoal hover:text-signal"
           >
-            <span className="hidden sm:inline tnum">{PHONE}</span>
-            <span className="sm:hidden">Call</span>
-            <span className="w-7 h-7 rounded-full bg-paper/15 flex items-center justify-center group-hover:translate-x-[1px] group-hover:-translate-y-[1px] fluid-1">
-              <ArrowOut className="text-paper" />
-            </span>
+            <PhoneIcon /> <span className="hidden sm:inline">{PHONE}</span>
           </a>
         </div>
       </header>
 
-      {/* HERO — Editorial Split */}
-      <section className="relative pt-40 pb-20 lg:pt-48 lg:pb-28">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12 lg:gap-20">
-          {/* LEFT — typographic monolith */}
-          <div className="lg:col-span-7 lg:pr-4">
-            <div className="lift">
-              <span className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/70">
-                <span className="w-1 h-1 rounded-full bg-bronze" />
-                Bakersfield · Specialty Painter · Est. 2006
-              </span>
-            </div>
+      {/* HERO — typography monolith on pearl ground, with floating stat cards */}
+      <section className="relative bg-paper overflow-hidden">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pt-24 pb-32 lg:pt-32 lg:pb-44">
+          <div className="settle">
+            <span className="eyebrow">
+              Bakersfield · CA · Specialty Painter · CSLB 1009092
+            </span>
+          </div>
 
-            <h1 className="lift lift-1 mt-10 font-display text-[clamp(3.6rem,11vw,9.6rem)] leading-[0.88] tracking-[-0.025em] text-espresso">
-              Painted
-              <br />
-              on the{" "}
-              <em className="italic font-normal text-bronze">iron,</em>
-              <br />
-              on your
-              <br />
-              property.
-            </h1>
+          <h1 className="settle settle-1 anton-display mt-12 font-display text-[clamp(5rem,17vw,15rem)] uppercase text-charcoal max-w-[14ch]">
+            Iron,
+            <br />
+            painted
+            <br />
+            on site.
+          </h1>
 
-            <p className="lift lift-2 mt-12 font-body text-[17px] leading-[1.55] text-espresso/80 max-w-[58ch]">
-              Since 2006, Hector and his crew have refinished gates, fences, and ornamental
-              metals across Kern County — using an electrostatic painting unit that bonds
-              paint to charged metal on-site. The gate stays on its hinges. The fence stays
-              in the ground. A factory finish applied at your address.
+          <div className="settle settle-2 mt-14 grid lg:grid-cols-12 gap-10 items-end">
+            <p className="lg:col-span-7 text-[18px] leading-[1.55] text-charcoal/75 max-w-[58ch]">
+              We bring the booth to you. A clamp grounds the metal, the paint exits the gun
+              charged, and every picket — both faces, every scroll — bonds to a finish closer
+              to powder coat than brush-and-roll. The gate stays on its hinges. The dog stays
+              in the yard.
             </p>
 
-            <div className="lift lift-3 mt-12 flex flex-wrap items-center gap-4">
+            <div className="lg:col-span-5 flex flex-wrap items-center gap-4 lg:justify-end">
               <a
                 href={PHONE_HREF}
-                className="group inline-flex items-center gap-3 bg-espresso text-paper rounded-full pl-7 pr-2 py-2 font-mono uppercase tracking-[0.18em] text-[11px] hover:bg-bronze fluid-1"
+                className="group inline-flex items-center gap-3 bg-charcoal text-paper px-6 py-3.5 text-[13px] hover:bg-signal"
               >
                 Call Hector
-                <span className="w-9 h-9 rounded-full bg-paper/15 flex items-center justify-center group-hover:translate-x-[2px] group-hover:-translate-y-[1px] group-hover:scale-105 fluid-1">
-                  <ArrowOut className="text-paper" />
-                </span>
+                <span className="group-hover:translate-x-1 transition-transform"><ArrowRight /></span>
               </a>
               <a
                 href="#trade"
-                className="font-mono uppercase tracking-[0.18em] text-[11px] text-espresso/70 hover:text-espresso underline decoration-espresso/20 underline-offset-[6px] hover:decoration-bronze fluid-1"
+                className="text-[13px] text-charcoal/65 hover:text-charcoal underline decoration-charcoal/20 underline-offset-[6px] hover:decoration-signal"
               >
                 Read about the trade
               </a>
             </div>
           </div>
+        </div>
 
-          {/* RIGHT — process ladder */}
-          <div className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-espresso/12">
-            <p className="font-mono uppercase tracking-[0.22em] text-[10px] text-espresso/55 mb-8 lift lift-2">
-              The trade · in four moves
-            </p>
-            <ol className="space-y-7">
-              {processSteps.map((s, i) => (
-                <li
-                  key={s.code}
-                  className={`grid grid-cols-[auto_1fr] gap-x-5 lift lift-${Math.min(i + 2, 4)}`}
-                >
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-bronze tnum pt-1">
-                    {s.code}
-                  </span>
-                  <div>
-                    <p className="font-display text-[1.4rem] leading-tight tracking-[-0.012em] text-espresso">
-                      {s.head}
-                    </p>
-                    <p className="text-[14px] leading-[1.6] text-espresso/70 mt-1.5 max-w-[34ch]">
-                      {s.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+        {/* Floating stat row — Soft Structuralism diffused-shadow cards */}
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 -mt-8 pb-16">
+          <div className="settle settle-3 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className="bg-paper rounded-2xl px-7 py-7 lift-shadow border border-charcoal/4"
+              >
+                <p className="font-display text-[clamp(2.6rem,4vw,3.6rem)] leading-none text-charcoal tnum">
+                  {s.num}
+                </p>
+                <p className="eyebrow mt-4">{s.label}</p>
+                <p className="text-[12.5px] text-charcoal/55 mt-1.5 leading-snug">{s.note}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* HAIRLINE META BAND — replaces the prior Specimen-card aside */}
-      <section className="border-y border-espresso/10 bg-linen/40">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-7 grid grid-cols-2 lg:grid-cols-5 gap-y-5 gap-x-8 items-center">
-          <div className="flex items-baseline gap-3">
-            <span className="font-display text-[2rem] leading-none text-espresso tnum">20</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-espresso/60">years on the iron</span>
+      {/* TRADE — flat dark-charcoal panel with massive typographic explainer */}
+      <section id="trade" className="bg-vantablack text-paper">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-32 lg:py-48 grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <span className="eyebrow text-paper/55">The trade</span>
+            <h2 className="anton-display mt-8 font-display text-[clamp(3.2rem,7vw,6rem)] uppercase text-paper max-w-[10ch]">
+              Charge.
+              <br />
+              <span className="text-signal">Atomize.</span>
+              <br />
+              Cure.
+              <br />
+              Walk away.
+            </h2>
           </div>
-          <div className="flex items-baseline gap-3">
-            <span className="font-display text-[2rem] leading-none text-espresso tnum">
-              4.8<span className="text-bronze italic">★</span>
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-espresso/60">37 reviews</span>
-          </div>
-          <div className="flex items-baseline gap-3">
-            <span className="font-mono text-[14px] tnum text-espresso/90">#1009092</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-espresso/60">CSLB · 2 classes</span>
-          </div>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-espresso/70">
-            Owner-operated
-          </div>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-espresso/70">
-            Bakersfield · Kern County
+
+          <div className="lg:col-span-7 lg:pt-2 grid sm:grid-cols-2 gap-x-10 gap-y-12 text-[15px] leading-[1.65] text-paper/80">
+            <div>
+              <p className="font-display text-[1.6rem] leading-[1.1] uppercase text-paper">01 Charge</p>
+              <p className="mt-3 max-w-[36ch]">
+                A grounding clamp runs a low electrostatic charge through the iron. Every square
+                inch becomes electrically attractive — both faces, every picket, every finial.
+              </p>
+            </div>
+            <div>
+              <p className="font-display text-[1.6rem] leading-[1.1] uppercase text-paper">02 Atomize</p>
+              <p className="mt-3 max-w-[36ch]">
+                The gun emits charged paint particles. They are drawn to the metal — not the
+                bushes, not your driveway. No overspray, no waste, no wrap-around mess.
+              </p>
+            </div>
+            <div>
+              <p className="font-display text-[1.6rem] leading-[1.1] uppercase text-paper">03 Cure</p>
+              <p className="mt-3 max-w-[36ch]">
+                The film flows out smooth and dries hard. No drips. No thin patches on the back
+                side. Closer to factory powder coat than brush-and-roll.
+              </p>
+            </div>
+            <div>
+              <p className="font-display text-[1.6rem] leading-[1.1] uppercase text-paper">04 Walk away</p>
+              <p className="mt-3 max-w-[36ch]">
+                The gate stays on its hinges. The fence stays in the ground. We mask, paint, and
+                clean up in a single visit — most jobs in a day.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* THE TRADE — single-paragraph cinematic explainer (NOT a 4-card grid) */}
-      <section id="trade" className="bg-espresso text-paper relative">
-        <div className="max-w-[1100px] mx-auto px-6 lg:px-12 py-32 lg:py-44">
-          <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-paper/70">
-            <span className="w-1 h-1 rounded-full bg-bronze" />
-            The trade
-          </span>
-
-          <p className="mt-10 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.18] tracking-[-0.012em] text-paper max-w-[28ch]">
-            What we do is closer to{" "}
-            <em className="italic text-bronze">powder coating</em> than to brush-and-roll.
-          </p>
-
-          <p className="mt-12 font-body text-[17px] leading-[1.7] text-paper/80 max-w-[68ch]">
-            We bring the booth to you. A clamp grounds the metal and runs a low{" "}
-            <span className="text-bronze">electrostatic charge</span> through it. Paint exits the
-            gun as charged particles, which are drawn to the iron — not the bushes, not your
-            driveway, not the back side of the picket. The film flows out, bonds evenly across
-            scrolls and finials, and dries to a finish closer to factory than to a Saturday
-            afternoon. The gate stays on its hinges. The fence stays in the ground. The dog
-            stays in the yard. <span className="font-display italic text-paper">Most gates are
-            not broken.</span> They are tired. We refinish them at your address in a single
-            visit, mask off, and walk away.
-          </p>
-
-          <p className="mt-10 font-mono text-[10.5px] uppercase tracking-[0.22em] text-paper/45">
-            — house philosophy, since 2006
-          </p>
-        </div>
-      </section>
-
-      {/* WORK — Double-Bezel cards in 2x2 */}
-      <section id="work" className="bg-paper">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-32 lg:py-44">
-          <div className="grid lg:grid-cols-12 gap-12 mb-20">
+      {/* WORK — Soft Structuralism floating cards in a 2x2 grid */}
+      <section id="work" className="bg-pearl">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-32 lg:py-44">
+          <div className="grid lg:grid-cols-12 gap-10 mb-16 items-end">
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/70">
-                <span className="w-1 h-1 rounded-full bg-bronze" />
-                Work · Four lanes
-              </span>
-              <h2 className="mt-9 font-display text-[clamp(2.4rem,5.6vw,4.6rem)] leading-[1.0] tracking-[-0.022em] text-espresso max-w-[18ch]">
-                The wrought-iron specialist who also{" "}
-                <em className="italic text-bronze">paints the house.</em>
+              <span className="eyebrow">Work · Four lanes, one crew</span>
+              <h2 className="anton-display mt-8 font-display text-[clamp(2.8rem,6.4vw,5.4rem)] uppercase text-charcoal max-w-[15ch]">
+                The wrought-iron specialist who also paints the house.
               </h2>
             </div>
-            <div className="lg:col-span-5 lg:pt-8 font-body text-[15.5px] leading-[1.65] text-espresso/75">
+            <div className="lg:col-span-5 text-[15.5px] leading-[1.65] text-charcoal/75">
               <p>
-                Two CSLB classes — Painting and Decorating, plus Ornamental Metals — is rare in
-                Kern County. It means one crew can finish your interior, your stucco, and the
-                iron fence between them, to the same standard.
+                Two CSLB classifications — Painting and Decorating, plus Ornamental Metals — is
+                rare in Kern County. It means one crew can finish your interior, your stucco,
+                and the iron fence between them, to the same standard.
               </p>
             </div>
           </div>
 
-          {/* Double-Bezel grid */}
-          <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
-            {services.map((s) => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {services.map((s, i) => (
               <article
-                key={s.code}
-                className="rounded-[2rem] bg-linen/50 ring-1 ring-espresso/10 p-1.5 group hover:bg-linen fluid-1"
+                key={s.title}
+                className="bg-paper rounded-3xl p-9 lg:p-11 lift-shadow border border-charcoal/4 flex flex-col"
               >
-                <div className="rounded-[calc(2rem-0.375rem)] bg-paper p-8 lg:p-10 h-full shadow-[inset_0_1px_0_oklch(1_0_0_/_0.6)] flex flex-col">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bronze">
-                    {s.code}
-                  </p>
-                  <h3 className="mt-5 font-display text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.05] tracking-[-0.012em] text-espresso">
-                    {s.title}
-                  </h3>
-                  <p className="mt-5 font-body text-[15px] leading-[1.6] text-espresso/75 flex-1">
-                    {s.body}
-                  </p>
-                  <ul className="mt-7 pt-6 border-t border-espresso/10 grid grid-cols-1 gap-y-2 font-mono text-[11px] tracking-[0.04em] text-espresso/65">
-                    {s.spec.map((x) => (
-                      <li key={x} className="flex gap-3">
-                        <span className="text-bronze">·</span>
-                        <span>{x}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <p className="font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal">
+                  {String(i + 1).padStart(2, "0")} · service
+                </p>
+                <h3 className="font-display text-[clamp(1.8rem,2.6vw,2.2rem)] uppercase tracking-[-0.005em] leading-[1.05] text-charcoal mt-5">
+                  {s.title}
+                </h3>
+                <p className="text-[15px] leading-[1.6] text-charcoal/75 mt-5 flex-1">
+                  {s.body}
+                </p>
+                <ul className="mt-7 pt-6 border-t border-charcoal/8 flex flex-wrap gap-x-2 gap-y-2">
+                  {s.tags.map((t) => (
+                    <li
+                      key={t}
+                      className="text-[11px] tracking-[0.04em] text-charcoal/65 bg-pearl px-2.5 py-1.5 rounded-full"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* VOICE OF THE WORK — one heroic pull-quote + 2 supporting reviews */}
-      <section id="voice" className="bg-linen/60 border-y border-espresso/10">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-32 lg:py-44">
-          <span className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/70 mb-12">
-            <span className="w-1 h-1 rounded-full bg-bronze" />
-            Voice of the work · 4.8 across 37
-          </span>
+      {/* VOICE — large pull-quote on paper, supporting reviews on cards */}
+      <section id="voice" className="bg-paper border-y border-charcoal/8">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-32 lg:py-44">
+          <span className="eyebrow">Voice of the work · 4.8 / 37 reviews</span>
 
-          <blockquote className="font-display italic font-normal text-[clamp(2.2rem,5vw,4.4rem)] leading-[1.08] tracking-[-0.018em] text-espresso max-w-[24ch]">
+          <p className="mt-10 font-display anton-display text-[clamp(2.4rem,6vw,5rem)] uppercase text-charcoal max-w-[18ch]">
             &ldquo;{reviews[0].body}&rdquo;
-          </blockquote>
-          <p className="mt-8 font-mono text-[10.5px] uppercase tracking-[0.22em] text-espresso/55">
-            — {reviews[0].context}
           </p>
+          <p className="eyebrow mt-8">— {reviews[0].context}</p>
 
-          <div className="mt-20 grid md:grid-cols-2 gap-12 lg:gap-20 pt-14 border-t border-espresso/12">
+          <div className="mt-20 grid md:grid-cols-2 gap-5 pt-14 border-t border-charcoal/8">
             {reviews.slice(1).map((r, i) => (
-              <figure key={i}>
-                <p className="flex gap-1 text-bronze text-[15px] leading-none mb-5">
-                  {Array.from({ length: 5 }).map((_, k) => <span key={k}>★</span>)}
+              <figure
+                key={i}
+                className="bg-pearl rounded-3xl p-9 lift-shadow border border-charcoal/4"
+              >
+                <p className="text-signal text-[15px] mb-5">
+                  ★ ★ ★ ★ ★
                 </p>
-                <blockquote className="font-display text-[1.4rem] leading-[1.35] tracking-[-0.01em] text-espresso max-w-[40ch]">
+                <blockquote className="text-[1.05rem] leading-[1.5] text-charcoal/85">
                   &ldquo;{r.body}&rdquo;
                 </blockquote>
-                <figcaption className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.22em] text-espresso/55">
+                <figcaption className="eyebrow mt-7 pt-5 border-t border-charcoal/8">
                   — {r.context}
                 </figcaption>
               </figure>
@@ -378,63 +322,52 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CONTACT — split, double-frame map */}
-      <section id="contact" className="bg-paper">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-32 lg:py-44 grid lg:grid-cols-12 gap-12 lg:gap-20">
+      {/* CONTACT */}
+      <section id="contact" className="bg-pearl">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-32 lg:py-44 grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="lg:col-span-5">
-            <span className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/70">
-              <span className="w-1 h-1 rounded-full bg-bronze" />
-              Quote · same-day on most jobs
-            </span>
-
-            <h2 className="mt-9 font-display text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.0] tracking-[-0.022em] text-espresso">
-              The gate at the front drive,{" "}
-              <em className="italic text-bronze">overdue?</em>
+            <span className="eyebrow">Quote · same-day on most jobs</span>
+            <h2 className="anton-display mt-8 font-display text-[clamp(3rem,6.4vw,5.4rem)] uppercase text-charcoal max-w-[12ch]">
+              Got an iron job?
             </h2>
-
-            <p className="mt-8 font-body text-[16px] leading-[1.65] text-espresso/75 max-w-[42ch]">
-              Most jobs are quoted on a short visit — we walk the run, measure the hardware,
-              and send the price the same day.
+            <p className="mt-7 text-[16px] leading-[1.65] text-charcoal/75 max-w-[42ch]">
+              We walk the run, measure the hardware, and send the price the same day. Most jobs
+              schedule within the week.
             </p>
 
             <a
               href={PHONE_HREF}
-              className="group mt-10 inline-flex items-center gap-3 bg-espresso text-paper rounded-full pl-7 pr-2 py-2 font-mono uppercase tracking-[0.18em] text-[11px] hover:bg-bronze fluid-1"
+              className="mt-10 inline-flex items-center gap-3 bg-charcoal text-paper px-7 py-4 text-[14px] tracking-[0.04em] hover:bg-signal"
             >
-              <PhoneIcon /> Call {PHONE}
-              <span className="w-9 h-9 rounded-full bg-paper/15 flex items-center justify-center group-hover:translate-x-[2px] group-hover:-translate-y-[1px] fluid-1">
-                <ArrowOut className="text-paper" />
-              </span>
+              <PhoneIcon />
+              <span className="tnum">Call · {PHONE}</span>
+              <ArrowRight />
             </a>
 
-            <dl className="mt-14 grid grid-cols-1 gap-y-6 font-body text-[14.5px]">
-              <div className="grid grid-cols-[120px_1fr] gap-x-5 items-baseline">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/55 pt-0.5">Address</dt>
-                <dd className="text-espresso/85">{ADDRESS}</dd>
+            <dl className="mt-14 grid grid-cols-1 gap-y-6 text-[14px]">
+              <div className="flex items-baseline gap-5">
+                <dt className="eyebrow w-[90px] shrink-0">Address</dt>
+                <dd className="text-charcoal">{ADDRESS}</dd>
               </div>
-              <div className="grid grid-cols-[120px_1fr] gap-x-5 items-baseline">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/55 pt-0.5">Hours</dt>
-                <dd className="text-espresso/85">{HOURS}</dd>
+              <div className="flex items-baseline gap-5">
+                <dt className="eyebrow w-[90px] shrink-0">Hours</dt>
+                <dd className="text-charcoal">{HOURS}</dd>
               </div>
-              <div className="grid grid-cols-[120px_1fr] gap-x-5 items-baseline">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/55 pt-0.5">License</dt>
-                <dd className="font-mono text-[13.5px] tnum text-espresso/85">
+              <div className="flex items-baseline gap-5">
+                <dt className="eyebrow w-[90px] shrink-0">License</dt>
+                <dd className="font-mono text-[13.5px] tnum text-charcoal">
                   CSLB #1009092
-                  <span className="block text-[12px] text-espresso/60 mt-1">Painting & Decorating · Ornamental Metals</span>
+                  <span className="block text-[11.5px] text-charcoal/55 mt-0.5">Painting + Ornamental Metals</span>
                 </dd>
               </div>
-              <div className="grid grid-cols-[120px_1fr] gap-x-5 items-baseline">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/55 pt-0.5">Service area</dt>
-                <dd className="text-espresso/85">Bakersfield & Kern County</dd>
-              </div>
-              <div className="grid grid-cols-[120px_1fr] gap-x-5 items-baseline">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-espresso/55 pt-0.5">Find us</dt>
+              <div className="flex items-baseline gap-5">
+                <dt className="eyebrow w-[90px] shrink-0">Find us</dt>
                 <dd>
                   <a
                     href={FACEBOOK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-espresso/85 hover:text-bronze fluid-1"
+                    className="inline-flex items-center gap-2 text-charcoal hover:text-signal"
                   >
                     <FacebookIcon /> Facebook
                   </a>
@@ -443,18 +376,18 @@ export default function Page() {
             </dl>
           </div>
 
-          {/* Double-Bezel map frame */}
           <div className="lg:col-span-7">
-            <div className="rounded-[2rem] bg-linen/60 ring-1 ring-espresso/10 p-1.5 shadow-[0_24px_60px_-30px_oklch(0.18_0.014_38_/_0.25)]">
-              <div className="rounded-[calc(2rem-0.375rem)] overflow-hidden bg-espresso">
+            <div className="bg-paper rounded-3xl p-1.5 deep-shadow border border-charcoal/4">
+              <div className="rounded-[calc(1.5rem-0.375rem)] overflow-hidden bg-vantablack">
                 <iframe
                   src={MAPS_EMBED}
-                  title="Hector's Iron Painting location"
+                  title="Hector's Iron Painting · 4101 De Ette Ave"
                   width="100%"
-                  height="520"
+                  height="540"
                   style={{
                     border: 0,
-                    filter: "invert(0.92) hue-rotate(180deg) grayscale(0.45) sepia(0.05)",
+                    display: "block",
+                    filter: "invert(0.9) hue-rotate(180deg) grayscale(0.5)",
                   }}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -466,21 +399,15 @@ export default function Page() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-espresso/10 bg-paper">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <span className="block w-2 h-2 rounded-full bg-bronze" />
-            <p className="font-display text-[14px] tracking-[-0.01em] text-espresso">
-              Hector&apos;s Iron Painting & Wrought Iron Co
-            </p>
-          </div>
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-espresso/55">
-            Bakersfield, CA · Est. 2006 · Lic. 1009092
+      <footer className="border-t border-charcoal/8 bg-paper">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+          <p className="font-display text-[16px] tracking-[-0.005em] uppercase text-charcoal">
+            HECTOR&apos;S IRON PAINTING & WROUGHT IRON CO
           </p>
-          <a
-            href={PHONE_HREF}
-            className="font-mono tnum text-[12px] tracking-[0.04em] text-espresso/85 hover:text-bronze fluid-1"
-          >
+          <p className="eyebrow">
+            Bakersfield, CA · Est. 2006 · CSLB 1009092
+          </p>
+          <a href={PHONE_HREF} className="font-mono tnum text-[12.5px] text-charcoal hover:text-signal">
             {PHONE}
           </a>
         </div>
